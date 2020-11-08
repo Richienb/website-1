@@ -49,7 +49,7 @@ script:
   - if [[ ${COMMIT_MESSAGE} =~ "[publish binary]" ]]; then yarn upload-binary || exit 0; fi;
 ```
 
-Then add the following lines to your `package.json` to tell NPM to only publish the `lib` directory and the `native/index.node` file. Make sure to change the `type` and `url` properties in the `repository` object:
+Then add the following lines to your `package.json` to tell NPM to only publish the `lib` directory. Make sure to change the `type` and `url` properties in the `repository` object:
 
 ```json
   "repository": {
@@ -57,7 +57,6 @@ Then add the following lines to your `package.json` to tell NPM to only publish 
     "url": "git+https://github.com/your-username-here/your-project-here.git"
   },
   "files": [
-    "native/index.node",
     "lib"
   ],
 ```
@@ -67,10 +66,10 @@ Then install [`node-pre-gyp`](https://github.com/mapbox/node-pre-gyp) and [`node
 ```bash
 # NPM
 npm install node-pre-gyp@amilajack/node-pre-gyp#neon-compat
-npm install node-pre-gyp-github
+npm install node-pre-gyp-github --save-dev
 # Yarn
 yarn add node-pre-gyp@amilajack/node-pre-gyp#neon-compat
-yarn add node-pre-gyp-github
+yarn add node-pre-gyp-github --dev
 ```
 
 Then make the following changes to the `scripts` section of your `package.json`:
